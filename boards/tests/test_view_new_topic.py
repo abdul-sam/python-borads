@@ -47,7 +47,7 @@ class NewTopicTests(TestCase):
     def test_new_topic_valid_post_data(self):
         url = reverse('new_topic', kwargs={'pk': 1})
         data = {
-            'subject': 'Test title',
+            'name': 'Test title',
             'message': 'Lorem ipsum dolor sit amet'
         }
         self.client.post(url, data)
@@ -72,7 +72,7 @@ class NewTopicTests(TestCase):
         '''
         url = reverse('new_topic', kwargs={'pk': 1})
         data = {
-            'subject': '',
+            'name': '',
             'message': ''
         }
         response = self.client.post(url, data)
