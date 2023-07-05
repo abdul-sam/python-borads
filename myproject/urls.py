@@ -58,4 +58,6 @@ urlpatterns = [
     re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/posts/(?P<post_pk>\d+)/edit/$',
         views.PostUpdateView.as_view(), name='edit_post'),
 
+    re_path(r'^settings/account/$', accounts_views.UserUpdateView.as_view(), name='my_account')
+
 ]
