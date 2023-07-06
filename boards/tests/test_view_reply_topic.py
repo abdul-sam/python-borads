@@ -16,3 +16,13 @@ class ReplyTopicTestCase(TestCase):
         self.topic = Topic.objects.create(subject='Hello, world', board=self.board, starter=user)
         Post.objects.create(message='Lorem ipsum dolor sit amet', topic=self.topic, created_by=user)
         self.url = reverse('reply_topic', kwargs={'pk': self.board.pk, 'topic_pk': self.topic.pk})
+
+class SuccessfulReplyTopicTests(ReplyTopicTestCase):
+
+    def test_redirection(self):
+        '''
+        A valid form submission should redirect the user
+        '''
+        url = reverse('topic_posts', kwargs={'pk': self.board.pk, 'topic_pk': self.topic.pk})
+        topic_posts_url = '{url}?page=1#2'.format(url=url)
+        self.assertRedirects(self.response, topic_posts_url)
